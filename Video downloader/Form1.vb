@@ -179,7 +179,19 @@ Public Class Form1
 		My.Settings.Quality_index = ComboBox_Quality.SelectedIndex
 	End Sub
 
+	Private Sub CheckBox_AddIDToFilename_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_AddIDToFilename.CheckedChanged
+		My.Settings.Add_video_id_in_filename = CheckBox_AddIDToFilename.Checked
+	End Sub
+
 	Private Sub CheckBox_CompatibilityMode_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_CompatibilityMode.CheckedChanged
 		My.Settings.Compatibility_mode = CheckBox_CompatibilityMode.Checked
+	End Sub
+
+	Private Sub CheckBox_Metadata_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Metadata.CheckedChanged
+		My.Settings.Embed_video_metadata = CheckBox_Metadata.Checked
+	End Sub
+
+	Private Sub CheckBox_SplitChapters_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_SplitChapters.CheckedChanged
+		My.Settings.Split_chapters = CheckBox_SplitChapters.Checked
 	End Sub
 End Class

@@ -210,8 +210,6 @@ Partial Class Form1
 		'CheckBox_Metadata
 		'
 		Me.CheckBox_Metadata.AutoSize = True
-		Me.CheckBox_Metadata.Checked = True
-		Me.CheckBox_Metadata.CheckState = System.Windows.Forms.CheckState.Checked
 		Me.HelpProvider1.SetHelpString(Me.CheckBox_Metadata, "Embed metadata to the video file.")
 		Me.CheckBox_Metadata.Location = New System.Drawing.Point(7, 65)
 		Me.CheckBox_Metadata.Name = "CheckBox_Metadata"
@@ -237,8 +235,6 @@ Partial Class Form1
 		'CheckBox_CompatibilityMode
 		'
 		Me.CheckBox_CompatibilityMode.AutoSize = True
-		Me.CheckBox_CompatibilityMode.Checked = True
-		Me.CheckBox_CompatibilityMode.CheckState = System.Windows.Forms.CheckState.Checked
 		Me.HelpProvider1.SetHelpString(Me.CheckBox_CompatibilityMode, "AV1 is only compatible with newer hardware. AV1 videos on older systems may stutt" &
 		"er or be blank with only audio.")
 		Me.CheckBox_CompatibilityMode.Location = New System.Drawing.Point(7, 42)
@@ -252,8 +248,6 @@ Partial Class Form1
 		'CheckBox_AddIDToFilename
 		'
 		Me.CheckBox_AddIDToFilename.AutoSize = True
-		Me.CheckBox_AddIDToFilename.Checked = True
-		Me.CheckBox_AddIDToFilename.CheckState = System.Windows.Forms.CheckState.Checked
 		Me.CheckBox_AddIDToFilename.Location = New System.Drawing.Point(7, 19)
 		Me.CheckBox_AddIDToFilename.Name = "CheckBox_AddIDToFilename"
 		Me.CheckBox_AddIDToFilename.Size = New System.Drawing.Size(142, 17)
@@ -304,6 +298,7 @@ Partial Class Form1
 		Me.LinkLabel_FuzePage.Name = "LinkLabel_FuzePage"
 		Me.LinkLabel_FuzePage.Size = New System.Drawing.Size(145, 13)
 		Me.LinkLabel_FuzePage.TabIndex = 12
+		Me.LinkLabel_FuzePage.TabStop = True
 		Me.LinkLabel_FuzePage.Text = "Fuze.page/software/FuzeVD"
 		'
 		'Form1
