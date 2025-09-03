@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/yt-dlp/yt-dlp/releases
+HostUrl=https://objects.githubusercontent.com/github-production-release-asset-2e65be/307260205/c3c10611-be24-4a93-bfbf-95b349640395?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241021%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241021T135550Z&X-Amz-Expires=300&X-Amz-Signature=8333769bc717f0f3ce0a8994cde6671d1a61b862b16de6d58c5d88957f4317ec&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dyt-dlp.exe&response-content-type=application%2Foctet-stream
