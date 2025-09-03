@@ -416,3 +416,7 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# FuzeVD dependencies
+yt-dlp.exe
+ffmpeg.exe
