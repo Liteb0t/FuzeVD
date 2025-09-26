@@ -1,5 +1,6 @@
-﻿Imports System.Text.RegularExpressions
-' Imports FuzeVD_Main.My
+﻿Imports System.Net
+Imports System.Text.RegularExpressions
+
 Public Class Form1
 	' Dim settings
 	Dim format As String = "null"
@@ -9,8 +10,10 @@ Public Class Form1
 	' Dim Notify_Intent As Boolean = False
 	Dim Quality_Settings As New Dictionary(Of String, Object)
 	Dim Format_Dict As New Dictionary(Of String, Object)
+	Dim client As WebClient = New WebClient()
 
 	Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+		BackgroundWorker_Banner.RunWorkerAsync()
 		TextBox_Destination.Text = My.Settings.Destination_Directory
 		Format_Dict("Source") = "best"
 		Format_Dict("MP4") = "mp4"
@@ -76,6 +79,8 @@ Public Class Form1
 			If CheckBox_CompatibilityMode.Checked Then
 				command += " --compat-opt prefer-vp9-sort"
 			End If
+			' YT-DLP 26/09/2025 temporary command. See https://github.com/yt-dlp/yt-dlp/issues/14456
+			command += " --extractor-args ""youtube:player-client=default,-tv_simply"""
 			' In yt-dlp 2025.07.21 the default behaviour changed so that it will no longer save the video last modified date. --mtime brings it back
 			command += " --mtime"
 			' If CheckBox_Notify.Checked Then
@@ -85,13 +90,13 @@ Public Class Form1
 			If Not CheckBox_AddIDToFilename.Checked Then
 				command += " -o ""%(title)s.%(ext)s"""
 			End If
-			BackgroundWorker1.RunWorkerAsync()
-			Else
-				MsgBox("One or more required libraries are missing." + Environment.NewLine + "Open FuzeVD Updater and use the ""Re-Install"" option", vbOKOnly + vbExclamation, "Error 404")
+			BackgroundWorker_VideoDownload.RunWorkerAsync()
+		Else
+			MsgBox("One or more required libraries are missing." + Environment.NewLine + "Open FuzeVD Updater and use the ""Re-Install"" option", vbOKOnly + vbExclamation, "Error 404")
 		End If
 	End Sub
 
-	Private Sub BackgroundWorker1_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+	Private Sub BackgroundWorker_VideoDownload_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker_VideoDownload.DoWork
 		Run_Ytdl()
 	End Sub
 
@@ -194,4 +199,9 @@ Public Class Form1
 	Private Sub CheckBox_SplitChapters_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_SplitChapters.CheckedChanged
 		My.Settings.Split_chapters = CheckBox_SplitChapters.Checked
 	End Sub
+
+	Private Sub BackgroundWorker_Banner_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker_Banner.DoWork
+		LinkLabel_FuzePage.Text = client.DownloadString("https://fuze.page/static/fuzevd/banner.txt").Trim()
+	End Sub
+
 End Class

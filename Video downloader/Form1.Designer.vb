@@ -42,11 +42,12 @@ Partial Class Form1
 		Me.CheckBox_CompatibilityMode = New System.Windows.Forms.CheckBox()
 		Me.CheckBox_AddIDToFilename = New System.Windows.Forms.CheckBox()
 		Me.CheckBox_SplitChapters = New System.Windows.Forms.CheckBox()
-		Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+		Me.BackgroundWorker_VideoDownload = New System.ComponentModel.BackgroundWorker()
 		Me.ProgressBar_Download = New System.Windows.Forms.ProgressBar()
 		Me.GroupBox_Output = New System.Windows.Forms.GroupBox()
 		Me.LinkLabel_FuzePage = New System.Windows.Forms.LinkLabel()
 		Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
+		Me.BackgroundWorker_Banner = New System.ComponentModel.BackgroundWorker()
 		Me.GroupBox_Formats.SuspendLayout()
 		Me.GroupBox_Basics.SuspendLayout()
 		Me.GroupBox_Settings.SuspendLayout()
@@ -127,6 +128,7 @@ Partial Class Form1
 		'
 		'ComboBox_Quality
 		'
+		Me.ComboBox_Quality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
 		Me.ComboBox_Quality.FormattingEnabled = True
 		Me.HelpProvider1.SetHelpString(Me.ComboBox_Quality, "Saves the video at the specified quality, or if the quality isn't available, down" &
 		"loads at the highest available resolution. Ignored when Filetype is Source.")
@@ -139,6 +141,7 @@ Partial Class Form1
 		'
 		'ComboBox_FileType
 		'
+		Me.ComboBox_FileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
 		Me.ComboBox_FileType.FormattingEnabled = True
 		Me.HelpProvider1.SetHelpString(Me.ComboBox_FileType, """Source"" selects the format stored in YouTube servers, thus avoiding a quality lo" &
 		"ss caused by reformatting.")
@@ -268,7 +271,7 @@ Partial Class Form1
 		Me.CheckBox_SplitChapters.Text = "Separate chapters into files"
 		Me.CheckBox_SplitChapters.UseVisualStyleBackColor = True
 		'
-		'BackgroundWorker1
+		'BackgroundWorker_VideoDownload
 		'
 		'
 		'ProgressBar_Download
@@ -293,19 +296,26 @@ Partial Class Form1
 		'
 		'LinkLabel_FuzePage
 		'
+		Me.LinkLabel_FuzePage.AutoEllipsis = True
 		Me.LinkLabel_FuzePage.AutoSize = True
-		Me.LinkLabel_FuzePage.Location = New System.Drawing.Point(12, 417)
+		Me.LinkLabel_FuzePage.Location = New System.Drawing.Point(12, 409)
+		Me.LinkLabel_FuzePage.MaximumSize = New System.Drawing.Size(258, 30)
+		Me.LinkLabel_FuzePage.MinimumSize = New System.Drawing.Size(258, 30)
 		Me.LinkLabel_FuzePage.Name = "LinkLabel_FuzePage"
-		Me.LinkLabel_FuzePage.Size = New System.Drawing.Size(145, 13)
+		Me.LinkLabel_FuzePage.Size = New System.Drawing.Size(258, 30)
 		Me.LinkLabel_FuzePage.TabIndex = 12
 		Me.LinkLabel_FuzePage.TabStop = True
 		Me.LinkLabel_FuzePage.Text = "Fuze.page/software/FuzeVD"
+		Me.LinkLabel_FuzePage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+		'
+		'BackgroundWorker_Banner
+		'
 		'
 		'Form1
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(389, 441)
+		Me.ClientSize = New System.Drawing.Size(391, 446)
 		Me.Controls.Add(Me.LinkLabel_FuzePage)
 		Me.Controls.Add(Me.Button_Update)
 		Me.Controls.Add(Me.GroupBox_Output)
@@ -315,11 +325,11 @@ Partial Class Form1
 		Me.HelpButton = True
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.MaximizeBox = False
-		Me.MaximumSize = New System.Drawing.Size(405, 480)
+		Me.MaximumSize = New System.Drawing.Size(407, 485)
 		Me.MinimizeBox = False
-		Me.MinimumSize = New System.Drawing.Size(405, 480)
+		Me.MinimumSize = New System.Drawing.Size(407, 485)
 		Me.Name = "Form1"
-		Me.Text = "Fuze Video Downloader v2.1.1"
+		Me.Text = "Fuze Video Downloader 2.1.2"
 		Me.GroupBox_Formats.ResumeLayout(False)
 		Me.GroupBox_Formats.PerformLayout()
 		Me.GroupBox_Basics.ResumeLayout(False)
@@ -349,7 +359,7 @@ Partial Class Form1
 	Friend WithEvents Label_Quality As Label
 	Friend WithEvents Label3 As Label
 	Friend WithEvents CheckBox_Metadata As CheckBox
-	Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+	Friend WithEvents BackgroundWorker_VideoDownload As System.ComponentModel.BackgroundWorker
 	Friend WithEvents ProgressBar_Download As ProgressBar
 	Friend WithEvents GroupBox_Output As GroupBox
 	Friend WithEvents LinkLabel_FuzePage As LinkLabel
@@ -357,4 +367,5 @@ Partial Class Form1
 	Friend WithEvents CheckBox_SplitChapters As CheckBox
 	Friend WithEvents CheckBox_AddIDToFilename As CheckBox
 	Friend WithEvents CheckBox_CompatibilityMode As CheckBox
+	Friend WithEvents BackgroundWorker_Banner As System.ComponentModel.BackgroundWorker
 End Class

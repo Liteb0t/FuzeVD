@@ -79,9 +79,9 @@ Public Class Form1
             End If
         Next
 
-    ' Read server file
-    client.DownloadFile("https://fuze.page/static/fuzevd/fuzevd-versions-server.fauv", "fuzevd-versions-server.fauv")
-    For Each Line As String In File.ReadLines(Application.StartupPath & "\fuzevd-versions-server.fauv")
+        ' Read server file
+        client.DownloadFile("https://fuze.page/static/fuzevd/fuzevd-versions-server.fauv", "fuzevd-versions-server.fauv")
+        For Each Line As String In File.ReadLines(Application.StartupPath & "\fuzevd-versions-server.fauv")
             ' TextBox_Versions.Text += Line + Environment.NewLine
             ' MsgBox(Line.Substring(0, Line.IndexOf("=")).Trim())
             If Line.Substring(0, Line.IndexOf("=")).Trim() = "yt-dlp" Then
@@ -119,6 +119,7 @@ Public Class Form1
         Else
             ' Button_Update.Text = "Up to date"
             Button_Update.Invoke(Sub() Button_Update.Text = "Up to date")
+            File.Delete("fuzevd-versions-server.fauv")
         End If
         has_checked_labels = True
     End Sub

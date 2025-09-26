@@ -37,6 +37,8 @@ Partial Class Form1
 		Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
 		Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
 		Me.Button_External = New System.Windows.Forms.Button()
+		Me.Label1 = New System.Windows.Forms.Label()
+		Me.Label2 = New System.Windows.Forms.Label()
 		Me.GroupBox_ytdlp.SuspendLayout()
 		Me.GroupBox1.SuspendLayout()
 		Me.GroupBox2.SuspendLayout()
@@ -55,7 +57,7 @@ Partial Class Form1
 		'
 		Me.GroupBox_ytdlp.Controls.Add(Me.Label_ffmpeg_server)
 		Me.GroupBox_ytdlp.Controls.Add(Me.Label_ffmpeg)
-		Me.GroupBox_ytdlp.Location = New System.Drawing.Point(12, 68)
+		Me.GroupBox_ytdlp.Location = New System.Drawing.Point(12, 81)
 		Me.GroupBox_ytdlp.Name = "GroupBox_ytdlp"
 		Me.GroupBox_ytdlp.Size = New System.Drawing.Size(288, 50)
 		Me.GroupBox_ytdlp.TabIndex = 2
@@ -75,7 +77,7 @@ Partial Class Form1
 		'
 		Me.GroupBox1.Controls.Add(Me.Label_fuzevd_server)
 		Me.GroupBox1.Controls.Add(Me.Label_fuzevd)
-		Me.GroupBox1.Location = New System.Drawing.Point(12, 124)
+		Me.GroupBox1.Location = New System.Drawing.Point(12, 137)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Size = New System.Drawing.Size(288, 50)
 		Me.GroupBox1.TabIndex = 3
@@ -104,7 +106,7 @@ Partial Class Form1
 		'
 		Me.GroupBox2.Controls.Add(Me.Label_ytdlp_server)
 		Me.GroupBox2.Controls.Add(Me.Label_ytdlp)
-		Me.GroupBox2.Location = New System.Drawing.Point(12, 12)
+		Me.GroupBox2.Location = New System.Drawing.Point(12, 25)
 		Me.GroupBox2.Name = "GroupBox2"
 		Me.GroupBox2.Size = New System.Drawing.Size(288, 50)
 		Me.GroupBox2.TabIndex = 3
@@ -132,7 +134,7 @@ Partial Class Form1
 		'Button_Update
 		'
 		Me.Button_Update.Enabled = False
-		Me.Button_Update.Location = New System.Drawing.Point(225, 180)
+		Me.Button_Update.Location = New System.Drawing.Point(225, 193)
 		Me.Button_Update.Name = "Button_Update"
 		Me.Button_Update.Size = New System.Drawing.Size(75, 23)
 		Me.Button_Update.TabIndex = 4
@@ -142,7 +144,7 @@ Partial Class Form1
 		'CheckBox_Reinstall
 		'
 		Me.CheckBox_Reinstall.AutoSize = True
-		Me.CheckBox_Reinstall.Location = New System.Drawing.Point(149, 184)
+		Me.CheckBox_Reinstall.Location = New System.Drawing.Point(149, 197)
 		Me.CheckBox_Reinstall.Name = "CheckBox_Reinstall"
 		Me.CheckBox_Reinstall.Size = New System.Drawing.Size(70, 17)
 		Me.CheckBox_Reinstall.TabIndex = 6
@@ -157,18 +159,40 @@ Partial Class Form1
 		'
 		'Button_External
 		'
-		Me.Button_External.Location = New System.Drawing.Point(12, 180)
+		Me.Button_External.Location = New System.Drawing.Point(12, 193)
 		Me.Button_External.Name = "Button_External"
 		Me.Button_External.Size = New System.Drawing.Size(121, 23)
 		Me.Button_External.TabIndex = 7
 		Me.Button_External.Text = "External update yt-dlp"
 		Me.Button_External.UseVisualStyleBackColor = True
 		'
+		'Label1
+		'
+		Me.Label1.AutoSize = True
+		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label1.Location = New System.Drawing.Point(18, 9)
+		Me.Label1.Name = "Label1"
+		Me.Label1.Size = New System.Drawing.Size(100, 13)
+		Me.Label1.TabIndex = 8
+		Me.Label1.Text = "Installed version"
+		'
+		'Label2
+		'
+		Me.Label2.AutoSize = True
+		Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label2.Location = New System.Drawing.Point(159, 9)
+		Me.Label2.Name = "Label2"
+		Me.Label2.Size = New System.Drawing.Size(87, 13)
+		Me.Label2.TabIndex = 9
+		Me.Label2.Text = "Latest version"
+		'
 		'Form1
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(304, 207)
+		Me.ClientSize = New System.Drawing.Size(312, 226)
+		Me.Controls.Add(Me.Label2)
+		Me.Controls.Add(Me.Label1)
 		Me.Controls.Add(Me.Button_External)
 		Me.Controls.Add(Me.CheckBox_Reinstall)
 		Me.Controls.Add(Me.Button_Update)
@@ -177,8 +201,8 @@ Partial Class Form1
 		Me.Controls.Add(Me.GroupBox_ytdlp)
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.MaximizeBox = False
-		Me.MaximumSize = New System.Drawing.Size(320, 246)
-		Me.MinimumSize = New System.Drawing.Size(320, 246)
+		Me.MaximumSize = New System.Drawing.Size(328, 265)
+		Me.MinimumSize = New System.Drawing.Size(328, 265)
 		Me.Name = "Form1"
 		Me.Text = "FuzeVD Updater"
 		Me.GroupBox_ytdlp.ResumeLayout(False)
@@ -206,4 +230,6 @@ Partial Class Form1
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Button_External As Button
+	Friend WithEvents Label1 As Label
+	Friend WithEvents Label2 As Label
 End Class
