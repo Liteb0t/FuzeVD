@@ -79,8 +79,6 @@ Public Class Form1
 			If CheckBox_CompatibilityMode.Checked Then
 				command += " --compat-opt prefer-vp9-sort"
 			End If
-			' YT-DLP 26/09/2025 temporary command. See https://github.com/yt-dlp/yt-dlp/issues/14456
-			command += " --extractor-args ""youtube:player-client=default,-tv_simply"""
 			' In yt-dlp 2025.07.21 the default behaviour changed so that it will no longer save the video last modified date. --mtime brings it back
 			command += " --mtime"
 			' If CheckBox_Notify.Checked Then
