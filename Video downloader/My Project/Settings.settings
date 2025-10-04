@@ -23,5 +23,8 @@
     <Setting Name="Split_chapters" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="Cookies_From_Browser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">brave</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

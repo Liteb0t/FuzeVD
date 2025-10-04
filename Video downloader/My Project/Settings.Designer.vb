@@ -137,6 +137,18 @@ Namespace My
                 Me("Split_chapters") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("brave")>  _
+        Public Property Cookies_From_Browser() As String
+            Get
+                Return CType(Me("Cookies_From_Browser"),String)
+            End Get
+            Set
+                Me("Cookies_From_Browser") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

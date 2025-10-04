@@ -29,7 +29,7 @@ Public Class Form1
 		Quality_Settings("720p") = "720"
 		Quality_Settings("480p") = "480"
 		Quality_Settings("360p") = "360"
-		Quality_Settings("144p") = "144"
+		Quality_Settings("Among Us drip") = "144"
 		ComboBox_FileType.SelectedIndex = My.Settings.Filetype_index
 		If ComboBox_FileType.SelectedIndex >= 4 Then
 			ComboBox_Quality.Enabled = False
@@ -43,13 +43,14 @@ Public Class Form1
 		CheckBox_CompatibilityMode.Checked = My.Settings.Compatibility_mode
 		CheckBox_Metadata.Checked = My.Settings.Embed_video_metadata
 		CheckBox_SplitChapters.Checked = My.Settings.Split_chapters
+		ComboBox_Cookies.Text = My.Settings.Cookies_From_Browser
 	End Sub
 
 
 	Private Sub btn_download_Click(sender As Object, e As EventArgs) Handles Button_Download.Click
-		TextBox_Output.Text = "[FuzeVD] Downloading..." + Environment.NewLine + TextBox_Output.Text
 		' Check if required libraries are installed
 		If My.Computer.FileSystem.FileExists(Windows.Forms.Application.StartupPath & "\yt-dlp.exe") AndAlso My.Computer.FileSystem.FileExists(Windows.Forms.Application.StartupPath & "\ffmpeg.exe") Then
+			TextBox_Output.Text = "[FuzeVD] Downloading..." + Environment.NewLine + TextBox_Output.Text
 			command = ""
 			If Format_Dict.Item(ComboBox_FileType.Text) IsNot "best" Then
 				' If the selected format isn't audio only
@@ -79,6 +80,9 @@ Public Class Form1
 			If CheckBox_CompatibilityMode.Checked Then
 				command += " --compat-opt prefer-vp9-sort"
 			End If
+			If CheckBox_Cookies.Checked Then
+				command += " --cookies-from-browser " + ComboBox_Cookies.Text
+			End If
 			' In yt-dlp 2025.07.21 the default behaviour changed so that it will no longer save the video last modified date. --mtime brings it back
 			command += " --mtime"
 			' If CheckBox_Notify.Checked Then
@@ -90,6 +94,7 @@ Public Class Form1
 			End If
 			BackgroundWorker_VideoDownload.RunWorkerAsync()
 		Else
+			TextBox_Output.Text = "[FuzeVD] Could not download because some libraries are missing."
 			MsgBox("One or more required libraries are missing." + Environment.NewLine + "Open FuzeVD Updater and use the ""Re-Install"" option", vbOKOnly + vbExclamation, "Error 404")
 		End If
 	End Sub
@@ -112,7 +117,6 @@ Public Class Form1
 		AddHandler process.ErrorDataReceived, AddressOf OutputHandler
 		Dim processInfo As New ProcessStartInfo
 		processInfo.FileName = "yt-dlp.exe"
-		' processInfo.Arguments = ("yt-dlp https://www.youtube.com/watch?v=kGW8SDFikeg")
 		processInfo.Arguments = (command)
 		processInfo.UseShellExecute = False
 		processInfo.WindowStyle = ProcessWindowStyle.Hidden
@@ -123,6 +127,27 @@ Public Class Form1
 		process.Start()
 		process.BeginOutputReadLine()
 		process.BeginErrorReadLine()
+		process.WaitForExit()
+		Dim errored As Boolean = Not String.Compare(TextBox_Output.Text.Substring(0, 6), "ERROR:")
+		TextBox_Output.Text = "[FuzeVD] yt-dlp process exited." + Environment.NewLine + TextBox_Output.Text
+		If errored Then
+			NotifyIcon1.BalloonTipIcon = ToolTipIcon.Error
+			NotifyIcon1.BalloonTipText = "yt-dlp exited with an error."
+		Else
+			NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
+			NotifyIcon1.BalloonTipText = "Download complete."
+		End If
+		NotifyIcon1.Visible = True
+
+		AddHandler NotifyIcon1.BalloonTipClosed, AddressOf BalloonClosed
+
+		NotifyIcon1.ShowBalloonTip(30000)
+	End Sub
+
+	Private Sub BalloonClosed(sender As Object, e As System.EventArgs)
+		sender.Visible = False
+		sender.Dispose()
+
 	End Sub
 
 	Private Sub OutputHandler(sender As Object, args As DataReceivedEventArgs)
@@ -173,8 +198,10 @@ Public Class Form1
 		My.Settings.Filetype_index = ComboBox_FileType.SelectedIndex
 		If ComboBox_FileType.SelectedIndex >= 4 Then
 			ComboBox_Quality.Enabled = False
+			CheckBox_CompatibilityMode.Enabled = False
 		Else
 			ComboBox_Quality.Enabled = True
+			CheckBox_CompatibilityMode.Enabled = True
 		End If
 	End Sub
 
@@ -200,6 +227,14 @@ Public Class Form1
 
 	Private Sub BackgroundWorker_Banner_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker_Banner.DoWork
 		LinkLabel_FuzePage.Text = client.DownloadString("https://fuze.page/static/fuzevd/banner.txt").Trim()
+	End Sub
+
+	Private Sub ComboBox_Cookies_TextChanged(sender As Object, e As EventArgs) Handles ComboBox_Cookies.TextChanged
+		My.Settings.Cookies_From_Browser = ComboBox_Cookies.Text
+	End Sub
+
+	Private Sub CheckBox_Cookies_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Cookies.CheckedChanged
+		ComboBox_Cookies.Enabled = CheckBox_Cookies.Checked
 	End Sub
 
 End Class

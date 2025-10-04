@@ -132,7 +132,7 @@ Public Class Form1
             do_fuzevd_update = True
         End If
         If nothing_to_update = False Then
-            If MsgBox("Updating will close FuzeVD. Are you sure you want to continue?", vbOKCancel + vbExclamation + vbApplicationModal, "Why Ben Shapiro left BuzzFeed (Ft. Jake Paul & PICKLE RIIIIIIICK)") = vbOK Then
+            If Not do_fuzevd_update Or MsgBox("Updating will close FuzeVD. Are you sure you want to continue?", vbOKCancel + vbExclamation + vbApplicationModal, "Why Ben Shapiro left BuzzFeed (Ft. Jake Paul & PICKLE RIIIIIIICK)") = vbOK Then
                 update_in_progress = True
                 ' Button_Update.Text = "Updating..."
                 Button_Update.Invoke(Sub() Button_Update.Text = "Updating...")
@@ -156,23 +156,23 @@ Public Class Form1
                     Label_ytdlp.Invoke(Sub() Label_ytdlp.Text = "ytdlp Update complete")
                     'End If
                 End If
-				If do_ffmpeg_update = True Or do_repair = True Then
-					Kill_Process("ffmpeg")
-					Threading.Thread.Sleep(500)
-					File.Delete("ffmpeg.exe")
-					' MsgBox("ffmpeg File Deleted")
-					client.DownloadFile("https://fuze.page/static/fuzevd/ffmpeg.exe", "ffmpeg.exe")
-					' Label_ffmpeg.Text = "ffmpeg Update complete"
-					Label_ffmpeg.Invoke(Sub() Label_ffmpeg.Text = "ffmpeg Update complete")
-				End If
-				If do_fuzevd_update = True Or do_repair = True Then
+                If do_ffmpeg_update = True Or do_repair = True Then
+                    Kill_Process("ffmpeg")
+                    Threading.Thread.Sleep(500)
+                    File.Delete("ffmpeg.exe")
+                    ' MsgBox("ffmpeg File Deleted")
+                    client.DownloadFile("https://fuze.page/static/fuzevd/ffmpeg.exe", "ffmpeg.exe")
+                    ' Label_ffmpeg.Text = "ffmpeg Update complete"
+                    Label_ffmpeg.Invoke(Sub() Label_ffmpeg.Text = "ffmpeg Update complete")
+                End If
+                If do_fuzevd_update = True Or do_repair = True Then
                     Kill_Process("FuzeVD")
                     Threading.Thread.Sleep(500)
                     File.Delete("FuzeVD.exe")
-					' MsgBox("fuzevd Deleted")
-					client.DownloadFile("https://fuze.page/static/fuzevd/FuzeVD.exe", "FuzeVD.exe")
-					' Label_fuzevd.Text = "fuzevd Update complete"
-					Label_fuzevd.Invoke(Sub() Label_fuzevd.Text = "fuzevd Update complete")
+                    ' MsgBox("fuzevd Deleted")
+                    client.DownloadFile("https://fuze.page/static/fuzevd/FuzeVD.exe", "FuzeVD.exe")
+                    ' Label_fuzevd.Text = "fuzevd Update complete"
+                    Label_fuzevd.Invoke(Sub() Label_fuzevd.Text = "fuzevd Update complete")
                 End If
 
                 ' Update local versions list to match the server's

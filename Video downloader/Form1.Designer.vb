@@ -22,6 +22,7 @@ Partial Class Form1
 	'Do not modify it using the code editor.
 	<System.Diagnostics.DebuggerStepThrough()>
 	Private Sub InitializeComponent()
+		Me.components = New System.ComponentModel.Container()
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
 		Me.Button_Download = New System.Windows.Forms.Button()
 		Me.Box_Url = New System.Windows.Forms.TextBox()
@@ -48,10 +49,15 @@ Partial Class Form1
 		Me.LinkLabel_FuzePage = New System.Windows.Forms.LinkLabel()
 		Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
 		Me.BackgroundWorker_Banner = New System.ComponentModel.BackgroundWorker()
+		Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+		Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+		Me.ComboBox_Cookies = New System.Windows.Forms.ComboBox()
+		Me.CheckBox_Cookies = New System.Windows.Forms.CheckBox()
 		Me.GroupBox_Formats.SuspendLayout()
 		Me.GroupBox_Basics.SuspendLayout()
 		Me.GroupBox_Settings.SuspendLayout()
 		Me.GroupBox_Output.SuspendLayout()
+		Me.GroupBox1.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'Button_Download
@@ -86,7 +92,7 @@ Partial Class Form1
 		'
 		Me.HelpProvider1.SetHelpString(Me.Button_Update, "Opens fuzevd-updater and checks fuze.page for new packages. Requires administrato" &
 		"r privileges.")
-		Me.Button_Update.Location = New System.Drawing.Point(271, 412)
+		Me.Button_Update.Location = New System.Drawing.Point(271, 454)
 		Me.Button_Update.Name = "Button_Update"
 		Me.HelpProvider1.SetShowHelp(Me.Button_Update, True)
 		Me.Button_Update.Size = New System.Drawing.Size(109, 23)
@@ -102,7 +108,7 @@ Partial Class Form1
 		Me.GroupBox_Formats.Controls.Add(Me.ComboBox_FileType)
 		Me.GroupBox_Formats.Location = New System.Drawing.Point(12, 122)
 		Me.GroupBox_Formats.Name = "GroupBox_Formats"
-		Me.GroupBox_Formats.Size = New System.Drawing.Size(180, 131)
+		Me.GroupBox_Formats.Size = New System.Drawing.Size(180, 111)
 		Me.GroupBox_Formats.TabIndex = 5
 		Me.GroupBox_Formats.TabStop = False
 		Me.GroupBox_Formats.Text = "Formats"
@@ -230,7 +236,7 @@ Partial Class Form1
 		Me.GroupBox_Settings.Controls.Add(Me.CheckBox_Metadata)
 		Me.GroupBox_Settings.Location = New System.Drawing.Point(200, 122)
 		Me.GroupBox_Settings.Name = "GroupBox_Settings"
-		Me.GroupBox_Settings.Size = New System.Drawing.Size(180, 131)
+		Me.GroupBox_Settings.Size = New System.Drawing.Size(180, 111)
 		Me.GroupBox_Settings.TabIndex = 6
 		Me.GroupBox_Settings.TabStop = False
 		Me.GroupBox_Settings.Text = "Settings"
@@ -287,7 +293,7 @@ Partial Class Form1
 		'
 		Me.GroupBox_Output.Controls.Add(Me.ProgressBar_Download)
 		Me.GroupBox_Output.Controls.Add(Me.TextBox_Output)
-		Me.GroupBox_Output.Location = New System.Drawing.Point(12, 259)
+		Me.GroupBox_Output.Location = New System.Drawing.Point(12, 301)
 		Me.GroupBox_Output.Name = "GroupBox_Output"
 		Me.GroupBox_Output.Size = New System.Drawing.Size(368, 147)
 		Me.GroupBox_Output.TabIndex = 8
@@ -298,7 +304,7 @@ Partial Class Form1
 		'
 		Me.LinkLabel_FuzePage.AutoEllipsis = True
 		Me.LinkLabel_FuzePage.AutoSize = True
-		Me.LinkLabel_FuzePage.Location = New System.Drawing.Point(12, 409)
+		Me.LinkLabel_FuzePage.Location = New System.Drawing.Point(12, 451)
 		Me.LinkLabel_FuzePage.MaximumSize = New System.Drawing.Size(258, 30)
 		Me.LinkLabel_FuzePage.MinimumSize = New System.Drawing.Size(258, 30)
 		Me.LinkLabel_FuzePage.Name = "LinkLabel_FuzePage"
@@ -311,11 +317,52 @@ Partial Class Form1
 		'BackgroundWorker_Banner
 		'
 		'
+		'NotifyIcon1
+		'
+		Me.NotifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info
+		Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
+		Me.NotifyIcon1.Text = "NotifyIcon1"
+		'
+		'GroupBox1
+		'
+		Me.GroupBox1.Controls.Add(Me.ComboBox_Cookies)
+		Me.GroupBox1.Controls.Add(Me.CheckBox_Cookies)
+		Me.GroupBox1.Location = New System.Drawing.Point(12, 239)
+		Me.GroupBox1.Name = "GroupBox1"
+		Me.GroupBox1.Size = New System.Drawing.Size(368, 56)
+		Me.GroupBox1.TabIndex = 13
+		Me.GroupBox1.TabStop = False
+		Me.GroupBox1.Text = "Use browser cookies if the video is age-restricted"
+		'
+		'ComboBox_Cookies
+		'
+		Me.ComboBox_Cookies.Enabled = False
+		Me.ComboBox_Cookies.FormattingEnabled = True
+		Me.HelpProvider1.SetHelpString(Me.ComboBox_Cookies, "Additional settings may be added after the browser name. See https://github.com/y" &
+		"t-dlp/yt-dlp?tab=readme-ov-file#filesystem-options")
+		Me.ComboBox_Cookies.Items.AddRange(New Object() {"brave", "chrome", "chromium", "edge", "firefox", "opera", "safari", "vivaldi", "whale"})
+		Me.ComboBox_Cookies.Location = New System.Drawing.Point(73, 20)
+		Me.ComboBox_Cookies.Name = "ComboBox_Cookies"
+		Me.HelpProvider1.SetShowHelp(Me.ComboBox_Cookies, True)
+		Me.ComboBox_Cookies.Size = New System.Drawing.Size(289, 21)
+		Me.ComboBox_Cookies.TabIndex = 1
+		'
+		'CheckBox_Cookies
+		'
+		Me.CheckBox_Cookies.AutoSize = True
+		Me.CheckBox_Cookies.Location = New System.Drawing.Point(6, 22)
+		Me.CheckBox_Cookies.Name = "CheckBox_Cookies"
+		Me.CheckBox_Cookies.Size = New System.Drawing.Size(64, 17)
+		Me.CheckBox_Cookies.TabIndex = 0
+		Me.CheckBox_Cookies.Text = "Cookies"
+		Me.CheckBox_Cookies.UseVisualStyleBackColor = True
+		'
 		'Form1
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(391, 446)
+		Me.ClientSize = New System.Drawing.Size(391, 488)
+		Me.Controls.Add(Me.GroupBox1)
 		Me.Controls.Add(Me.LinkLabel_FuzePage)
 		Me.Controls.Add(Me.Button_Update)
 		Me.Controls.Add(Me.GroupBox_Output)
@@ -325,11 +372,11 @@ Partial Class Form1
 		Me.HelpButton = True
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.MaximizeBox = False
-		Me.MaximumSize = New System.Drawing.Size(407, 485)
+		Me.MaximumSize = New System.Drawing.Size(407, 527)
 		Me.MinimizeBox = False
-		Me.MinimumSize = New System.Drawing.Size(407, 485)
+		Me.MinimumSize = New System.Drawing.Size(407, 527)
 		Me.Name = "Form1"
-		Me.Text = "Fuze Video Downloader 2.1.2"
+		Me.Text = "Fuze Video Downloader 2.1.3"
 		Me.GroupBox_Formats.ResumeLayout(False)
 		Me.GroupBox_Formats.PerformLayout()
 		Me.GroupBox_Basics.ResumeLayout(False)
@@ -338,6 +385,8 @@ Partial Class Form1
 		Me.GroupBox_Settings.PerformLayout()
 		Me.GroupBox_Output.ResumeLayout(False)
 		Me.GroupBox_Output.PerformLayout()
+		Me.GroupBox1.ResumeLayout(False)
+		Me.GroupBox1.PerformLayout()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -368,4 +417,8 @@ Partial Class Form1
 	Friend WithEvents CheckBox_AddIDToFilename As CheckBox
 	Friend WithEvents CheckBox_CompatibilityMode As CheckBox
 	Friend WithEvents BackgroundWorker_Banner As System.ComponentModel.BackgroundWorker
+	Friend WithEvents NotifyIcon1 As NotifyIcon
+	Friend WithEvents GroupBox1 As GroupBox
+	Friend WithEvents CheckBox_Cookies As CheckBox
+	Friend WithEvents ComboBox_Cookies As ComboBox
 End Class
