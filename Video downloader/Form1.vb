@@ -50,7 +50,7 @@ Public Class Form1
 	Private Sub btn_download_Click(sender As Object, e As EventArgs) Handles Button_Download.Click
 		' Check if required libraries are installed
 		If My.Computer.FileSystem.FileExists(Windows.Forms.Application.StartupPath & "\yt-dlp.exe") AndAlso My.Computer.FileSystem.FileExists(Windows.Forms.Application.StartupPath & "\ffmpeg.exe") Then
-			TextBox_Output.Text = "[FuzeVD] Downloading..." + Environment.NewLine + TextBox_Output.Text
+			' TextBox_Output.Text = "[FuzeVD] Starting..." + Environment.NewLine + TextBox_Output.Text
 			command = ""
 			If Format_Dict.Item(ComboBox_FileType.Text) IsNot "best" Then
 				' If the selected format isn't audio only
@@ -93,6 +93,7 @@ Public Class Form1
 				command += " -o ""%(title)s.%(ext)s"""
 			End If
 			BackgroundWorker_VideoDownload.RunWorkerAsync()
+			TextBox_Output.Text = "[FuzeVD] yt-dlp " + command
 		Else
 			TextBox_Output.Text = "[FuzeVD] Could not download because some libraries are missing."
 			MsgBox("One or more required libraries are missing." + Environment.NewLine + "Open FuzeVD Updater and use the ""Re-Install"" option", vbOKOnly + vbExclamation, "Error 404")
@@ -141,7 +142,7 @@ Public Class Form1
 
 		AddHandler NotifyIcon1.BalloonTipClosed, AddressOf BalloonClosed
 
-		NotifyIcon1.ShowBalloonTip(30000)
+		NotifyIcon1.ShowBalloonTip(5000)
 	End Sub
 
 	Private Sub BalloonClosed(sender As Object, e As System.EventArgs)
