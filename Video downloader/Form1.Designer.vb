@@ -48,10 +48,10 @@ Partial Class Form1
 		Me.GroupBox_Output = New System.Windows.Forms.GroupBox()
 		Me.LinkLabel_FuzePage = New System.Windows.Forms.LinkLabel()
 		Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
+		Me.ComboBox_Cookies = New System.Windows.Forms.ComboBox()
 		Me.BackgroundWorker_Banner = New System.ComponentModel.BackgroundWorker()
 		Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
 		Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-		Me.ComboBox_Cookies = New System.Windows.Forms.ComboBox()
 		Me.CheckBox_Cookies = New System.Windows.Forms.CheckBox()
 		Me.GroupBox_Formats.SuspendLayout()
 		Me.GroupBox_Basics.SuspendLayout()
@@ -314,6 +314,19 @@ Partial Class Form1
 		Me.LinkLabel_FuzePage.Text = "Fuze.page/software/FuzeVD"
 		Me.LinkLabel_FuzePage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 		'
+		'ComboBox_Cookies
+		'
+		Me.ComboBox_Cookies.Enabled = False
+		Me.ComboBox_Cookies.FormattingEnabled = True
+		Me.HelpProvider1.SetHelpString(Me.ComboBox_Cookies, "Additional settings may be added after the browser name. See https://github.com/y" &
+		"t-dlp/yt-dlp?tab=readme-ov-file#filesystem-options")
+		Me.ComboBox_Cookies.Items.AddRange(New Object() {"brave", "chrome", "chromium", "edge", "firefox", "opera", "safari", "vivaldi", "whale"})
+		Me.ComboBox_Cookies.Location = New System.Drawing.Point(73, 20)
+		Me.ComboBox_Cookies.Name = "ComboBox_Cookies"
+		Me.HelpProvider1.SetShowHelp(Me.ComboBox_Cookies, True)
+		Me.ComboBox_Cookies.Size = New System.Drawing.Size(289, 21)
+		Me.ComboBox_Cookies.TabIndex = 1
+		'
 		'BackgroundWorker_Banner
 		'
 		'
@@ -333,19 +346,6 @@ Partial Class Form1
 		Me.GroupBox1.TabIndex = 13
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Use browser cookies if the video is age-restricted"
-		'
-		'ComboBox_Cookies
-		'
-		Me.ComboBox_Cookies.Enabled = False
-		Me.ComboBox_Cookies.FormattingEnabled = True
-		Me.HelpProvider1.SetHelpString(Me.ComboBox_Cookies, "Additional settings may be added after the browser name. See https://github.com/y" &
-		"t-dlp/yt-dlp?tab=readme-ov-file#filesystem-options")
-		Me.ComboBox_Cookies.Items.AddRange(New Object() {"brave", "chrome", "chromium", "edge", "firefox", "opera", "safari", "vivaldi", "whale"})
-		Me.ComboBox_Cookies.Location = New System.Drawing.Point(73, 20)
-		Me.ComboBox_Cookies.Name = "ComboBox_Cookies"
-		Me.HelpProvider1.SetShowHelp(Me.ComboBox_Cookies, True)
-		Me.ComboBox_Cookies.Size = New System.Drawing.Size(289, 21)
-		Me.ComboBox_Cookies.TabIndex = 1
 		'
 		'CheckBox_Cookies
 		'
@@ -376,7 +376,7 @@ Partial Class Form1
 		Me.MinimizeBox = False
 		Me.MinimumSize = New System.Drawing.Size(407, 527)
 		Me.Name = "Form1"
-		Me.Text = "Fuze Video Downloader 2.1.3"
+		Me.Text = "Fuze Video Downloader 2.1.4"
 		Me.GroupBox_Formats.ResumeLayout(False)
 		Me.GroupBox_Formats.PerformLayout()
 		Me.GroupBox_Basics.ResumeLayout(False)

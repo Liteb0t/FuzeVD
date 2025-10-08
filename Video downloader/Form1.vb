@@ -83,12 +83,12 @@ Public Class Form1
 			If CheckBox_Cookies.Checked Then
 				command += " --cookies-from-browser " + ComboBox_Cookies.Text
 			End If
-			' In yt-dlp 2025.07.21 the default behaviour changed so that it will no longer save the video last modified date. --mtime brings it back
-			command += " --mtime"
 			' If CheckBox_Notify.Checked Then
 			' Notify_Intent = True
 			' End If
-			command += " " + Box_Url.Text + " -P """ + TextBox_Destination.Text + """" ' -o ""%(title)s.%(ext)s"""
+			
+			' In yt-dlp 2025.07.21 the default behaviour changed so that it will no longer save the video last modified date. --mtime brings it back
+			command += " --mtime --progress-delta 0.73 " + Box_Url.Text + " -P """ + TextBox_Destination.Text + """" ' -o ""%(title)s.%(ext)s"""
 			If Not CheckBox_AddIDToFilename.Checked Then
 				command += " -o ""%(title)s.%(ext)s"""
 			End If
@@ -154,33 +154,25 @@ Public Class Form1
 	Private Sub OutputHandler(sender As Object, args As DataReceivedEventArgs)
 		If Not String.IsNullOrEmpty(args.Data) Then
 			If args.Data.Contains("[download]") Then
-				Update_Progress_Bar(args.Data.Substring(11, 3).Trim())
+				Dim percent_complete As String = args.Data.Substring(11, 3).Trim()
+				If Regex.IsMatch(percent_complete, "^[0-9 ]+$") Then
+					Update_Progress_Bar(percent_complete)
+					Dim newline_i As Integer = TextBox_Output.Text.IndexOf(Environment.NewLine)
+					If (newline_i > -1) Then
+						TextBox_Output.Text = args.Data + Environment.NewLine + TextBox_Output.Text.Remove(0, newline_i + 1)
+					Else
+						TextBox_Output.Text = args.Data + Environment.NewLine + TextBox_Output.Text
+					End If
+				End If
 			End If
-			TextBox_Output.Text = args.Data + Environment.NewLine + TextBox_Output.Text
 		End If
 	End Sub
 
 	Private Sub Update_Progress_Bar(percent_complete As String)
-		If Regex.IsMatch(percent_complete, "^[0-9 ]+$") Then
-			If CInt(percent_complete) <= 100 Then
-				ProgressBar_Download.Value = CInt(percent_complete)
-			End If
-			'If ProgressBar_Download.Value = 100 And Notify_Intent = True Then
-			'    Show_Notification()
-			'    Notify_Intent = False
-			'End If
+		If CInt(percent_complete) <= 100 Then
+			ProgressBar_Download.Value = CInt(percent_complete)
 		End If
 	End Sub
-
-	'Private Sub Show_Notification()
-	'    Dim Notification_Window = MsgBox("Video has finished downloading :)")
-	'End Sub
-
-	' Private Shared Sub ErrorDataReceivedAsync(sender As Object, args As DataReceivedEventArgs)
-	' If Not args.Data Is Nothing AndAlso Not String.IsNullOrEmpty(args.Data) Then
-	'         Form1.TextBox_Output.Text += args.Data
-	' End If
-	' End Sub
 
 	Private Sub Button_Directory_Click(sender As Object, e As EventArgs) Handles Button_Directory.Click
 		Dim dialog = New FolderBrowserDialog()
